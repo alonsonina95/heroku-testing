@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-import { GuestSchema } from '../models/crmModel.js';
+const GuestSchema =  require('../models/crmModel');
+const mongoose = require('mongoose');
 
 const Guest = mongoose.model('Guest', GuestSchema);
 
-export const addNewGuest = (req, res) => {
+const addNewGuest = (req, res) => {
     let newGuest = new Guest(req.body);
 
     newGuest.save((err, guest ) => {
@@ -14,7 +14,7 @@ export const addNewGuest = (req, res) => {
     });
 }
 
-export const getGuests = (req, res) => {
+const getGuests = (req, res) => {
     Guest.find({},(err, guest) => {
         if(err) {
             res.send(err);
@@ -23,7 +23,7 @@ export const getGuests = (req, res) => {
     });
 }
 
-export const guetGuestWithId = (req, res) => {
+const guetGuestWithId = (req, res) => {
     Guest.findById(req.params.guestId,(err, guest) => {
         if (err) {
             res.send(err);
@@ -32,7 +32,7 @@ export const guetGuestWithId = (req, res) => {
     });
 }
 
-export const updateGuest = (req, res) => {
+const updateGuest = (req, res) => {
     Guest.findOneAndUpdate({_id: req.params.guestId}, req.body, { new: true , useFindAndModify: false }, (err, guest) => {
         if (err) {
             res.send(err);
@@ -41,12 +41,16 @@ export const updateGuest = (req, res) => {
     });
 }
 
-export const deleteGuest = (req, res) => {
+const deleteGuest = (req, res) => {
     Guest.remove({_id: req.params.guestId}, (err, guest) => {
         if (err) {
             res.send(err);
         }
         res.json({ message: 'successfully deleted guest'});
     });
+}
+
+module.exports = {
+    addNewGuest, getGuests, guetGuestWithId, updateGuest, deleteGuest
 }
 

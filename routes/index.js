@@ -1,4 +1,4 @@
-import { addNewGuest, getGuests, guetGuestWithId, updateGuest, deleteGuest } from '../controllers/crmController.js';
+const { addNewGuest, getGuests, guetGuestWithId, updateGuest, deleteGuest } = require('../controllers/crmController') 
 
 var express = require("express")
 var router = express.Router()

@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-export const GuestSchema = new Schema({
+ const GuestSchema = new Schema({
     firstName: {
         type: String,
         required: 'Enter a first name'
@@ -12,3 +12,5 @@ export const GuestSchema = new Schema({
         required: 'Enter a last name'
     }
 })
+
+module.exports = GuestSchema
